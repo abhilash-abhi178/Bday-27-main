@@ -28,7 +28,7 @@ export default function PhotosScreen({ onNext }) {
           transition={{ duration: 0.8 }}
           className="text-3xl md:text-5xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-fuchsia-400 to-purple-400 drop-shadow"
         >
-          Some Sweet Moments
+          You — in pictures
         </motion.h2>
         <p className="text-sm text-rose-100/90 mt-1">(Swipe the cards)</p>
       </div>

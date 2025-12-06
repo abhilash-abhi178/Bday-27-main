@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 
 button {
   cursor: pointer;
@@ -577,7 +578,7 @@ button { cursor: pointer; }
   width: 100%;
   overflow-y: auto;
   padding-right: 8px;
-  font-family: Georgia, serif;
+  font-family: 'Satisfy', cursive;
   font-size: 18px;
   line-height: 1.55;
   color: #3a183d;

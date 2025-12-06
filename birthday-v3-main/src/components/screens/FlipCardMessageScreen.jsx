@@ -124,19 +124,27 @@ export default function MessageScreen({ onNext }) {
                 }}
               >
                 <p className="perfect-message">
-                  Happy Birthday, Cutiepie! You deserve all the happiness, love, and
-                  smiles in the world today and always. You have this special way of
-                  making everything around you brighter — your smile, your kindness,
-                  and the way you make people feel truly cared for.
-                  <br />
-                  <br />
-                  I hope your day is filled with laughter, surprises, and moments that
-                  make your heart happy. You’re truly one of a kind, and I just want you to
-                  know how special you are.
-                  <br />
-                  <br />
-                  Keep being the amazing person you are. Wishing you endless happiness,
-                  success, and all the sweet things life has to offer. 💗
+                                 Happy Birthday, Cutiepie!<br />
+                                So today is the day the cutest troublemaker was born, huh?
+                                No wonder the world feels a little more beautiful ever since you arrived.
+
+                                <br /><br />
+
+                                it’s honestly unfair how cute you are.😉🥰
+
+                                <br /><br />
+
+                                I hope your day is filled with the kind of moments
+                                that make you blush a little,
+                                smile a lot,
+                                and think of me at least once —
+                                okay fine, more than once. 😌
+
+                                <br /><br />
+
+                                Keep being your adorable, irresistible self.
+                                Wishing you happiness, surprises, and all the sweet things…
+                                including me, maybe. 💗😏
                 </p>
               </div>
             </motion.div>
