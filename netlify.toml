@@ -1,1 +1,7 @@
+[build]
+  base = "birthday-v3-main"
+  command = "npm run build"
+  publish = ""   # <-- FORCE EMPTY PUBLISH DIR
 
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
