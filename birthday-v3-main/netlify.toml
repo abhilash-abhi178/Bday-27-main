@@ -1,0 +1,7 @@
+[build]
+  base = "birthday-v3-main"
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
