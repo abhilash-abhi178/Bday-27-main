@@ -226,7 +226,7 @@ export default function ScreenFireflyHeart({ onNext }) {
                 className="text-2xl md:text-4xl font-bold text-center leading-tight"
               >
                 <span className="block text-transparent bg-clip-text bg-gradient-to-b from-yellow-100 via-amber-200 to-yellow-500 drop-shadow-[0_0_25px_rgba(255,200,0,0.5)]">
-                  {"Happy Birthday".split("").map((char, index) => (
+                  {"Happiest Birthday".split("").map((char, index) => (
                     <motion.span key={index} variants={letterVariants}>
                       {char}
                     </motion.span>
