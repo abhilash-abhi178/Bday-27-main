@@ -1,12 +1,10 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 
-const AUDIO_SRC = "https://cdn.pixabay.com/download/audio/2022/03/28/audio_4c7b0e03d8.mp3?filename=calm-piano-ambient-112191.mp3"
+const AUDIO_SRC = "/images/Kannathil BGM.mp3"
 
 export default function AudioController() {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [blocked, setBlocked] = useState(false)
   const audioRef = useRef(null)
   const resumeOnFocusRef = useRef(false)
 
@@ -23,23 +21,9 @@ export default function AudioController() {
     const audio = ensureAudio()
     try {
       await audio.play()
-      setIsPlaying(true)
-      setBlocked(false)
       return true
     } catch (err) {
-      setBlocked(true)
-      setIsPlaying(false)
       return false
-    }
-  }
-
-  const handleToggle = async () => {
-    const audio = ensureAudio()
-    if (audio.paused) {
-      await playAudio()
-    } else {
-      audio.pause()
-      setIsPlaying(false)
     }
   }
 
@@ -54,8 +38,11 @@ export default function AudioController() {
       }
     }
 
-    // Attempt autoplay; if blocked, the first user interaction will retry
-    playAudio()
+    // Wait 3 seconds then attempt autoplay
+    const playTimeout = setTimeout(() => {
+      playAudio()
+    }, 3000)
+
     document.addEventListener("pointerdown", maybeClearInteraction)
     document.addEventListener("keydown", maybeClearInteraction)
 
@@ -66,7 +53,6 @@ export default function AudioController() {
         if (!audio.paused) {
           resumeOnFocusRef.current = true
           audio.pause()
-          setIsPlaying(false)
         }
       } else if (resumeOnFocusRef.current) {
         resumeOnFocusRef.current = false
@@ -78,6 +64,7 @@ export default function AudioController() {
 
     return () => {
       cleaned = true
+      clearTimeout(playTimeout)
       document.removeEventListener("pointerdown", maybeClearInteraction)
       document.removeEventListener("keydown", maybeClearInteraction)
       document.removeEventListener("visibilitychange", handleVisibility)
@@ -88,13 +75,5 @@ export default function AudioController() {
     }
   }, [])
 
-  return (
-    <button
-      type="button"
-      onClick={handleToggle}
-      className="fixed top-4 left-4 z-50 rounded-full px-4 py-2 text-sm font-semibold text-white bg-white/10 border border-white/20 backdrop-blur-md shadow-lg hover:bg-white/20 transition"
-    >
-      {isPlaying ? "Pause music" : blocked ? "Tap to play music" : "Play music"}
-    </button>
-  )
+  return null
 }
