@@ -144,7 +144,7 @@ export default function MessageScreen({ onNext }) {
 
                                 Keep being your adorable, irresistible self.
                                 Wishing you happiness, surprises, and all the sweet things…
-                                including me, maybe. 💗😏
+                                including me, maybe. 💗😁
                 </p>
               </div>
             </motion.div>
