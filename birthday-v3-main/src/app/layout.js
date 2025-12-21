@@ -1,6 +1,7 @@
 import { Kalam } from "next/font/google";
 import "./globals.css";
 import BackgroundHearts from "../components/BackgroundHearts";
+import AudioController from "../components/AudioController";
 
 const kalam = Kalam({
   subsets: ["latin"],
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
         
         {/* 🌸 Global floating hearts background */}
         <BackgroundHearts />
+        <AudioController />
 
         {children}
       </body>
