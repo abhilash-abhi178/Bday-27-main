@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import LoaderScreen from "@/components/screens/LoaderScreen"
 import IntroScreen from "@/components/screens/IntroScreen"
@@ -13,6 +13,9 @@ import Screen9 from "@/components/screens/Screen9"
 import HeartBackground from "@/components/screens/HeartBackground";
 export default function HomePage() {
   const [currentScreen, setCurrentScreen] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [needsUserAction, setNeedsUserAction] = useState(false)
+  const audioRef = useRef(null)
 
   const screens = [
     <LoaderScreen key="loader" onDone={() => setCurrentScreen(1)} />,
@@ -24,6 +27,37 @@ export default function HomePage() {
     <GiftScreen key="gift" onNext={() => setCurrentScreen(7)}   />,
     <Screen9 key="screen9" onReplay={() => setCurrentScreen(0)} />,
   ]
+
+  const ensureAudio = () => {
+    if (audioRef.current) return audioRef.current
+    const audio = new Audio("https://cdn.pixabay.com/download/audio/2022/03/28/audio_4c7b0e03d8.mp3?filename=calm-piano-ambient-112191.mp3")
+    audio.loop = true
+    audio.volume = 0.35
+    audioRef.current = audio
+    return audio
+  }
+
+  const tryPlay = async () => {
+    const audio = ensureAudio()
+    try {
+      await audio.play()
+      setIsPlaying(true)
+      setNeedsUserAction(false)
+    } catch (err) {
+      setNeedsUserAction(true)
+      setIsPlaying(false)
+    }
+  }
+
+  const handleMusicToggle = async () => {
+    const audio = ensureAudio()
+    if (audio.paused) {
+      await tryPlay()
+    } else {
+      audio.pause()
+      setIsPlaying(false)
+    }
+  }
 
   useEffect(() => {
     console.log('HomePage: currentScreen ->', currentScreen, 'screens length', screens.length, 'rendering key:', screens[currentScreen]?.key, 'type:', screens[currentScreen]?.type?.name)
@@ -51,6 +85,17 @@ export default function HomePage() {
     return () => window.removeEventListener('unhandledrejection', onUnhandledRejection);
   }, []);
 
+  useEffect(() => {
+    // Try to start music immediately; if blocked, we'll show a button prompt.
+    tryPlay()
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause()
+        audioRef.current = null
+      }
+    }
+  }, [])
+
   return (
     <main className="min-h-screen bg-gradient-to-tr from-rose-950/40 via-black to-rose-950/40 overflow-hidden relative">
 
@@ -68,6 +113,14 @@ export default function HomePage() {
           </motion.div>
         </AnimatePresence>
       </div>
+
+      <button
+        type="button"
+        onClick={handleMusicToggle}
+        className="fixed top-4 left-4 z-50 rounded-full px-4 py-2 text-sm font-semibold text-white bg-white/10 border border-white/20 backdrop-blur-md shadow-lg hover:bg-white/20 transition"
+      >
+        {isPlaying ? "Pause music" : needsUserAction ? "Tap to play music" : "Play music"}
+      </button>
 
       {/* Watermark */}
       <motion.div
