@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react"
 
-const AUDIO_SRC = "/images/Kannathil BGM.mp3"
+const AUDIO_SRC = "/images/BGM_site.mp3"
 
 export default function AudioController() {
   const audioRef = useRef(null)
