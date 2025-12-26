@@ -235,7 +235,7 @@ export default function ScreenFireflyHeart({ onNext }) {
 
                 <span className="block mt-2">
                   <span className="text-transparent bg-clip-text bg-gradient-to-b from-yellow-100 via-amber-200 to-yellow-500 drop-shadow-[0_0_25px_rgba(255,200,0,0.5)]">
-                    {"Princess ".split("").map((char, index) => (
+                    {"Bangara".split("").map((char, index) => (
                       <motion.span key={index} variants={letterVariants}>
                         {char}
                       </motion.span>
@@ -243,7 +243,7 @@ export default function ScreenFireflyHeart({ onNext }) {
                   </span>
                   
                   <motion.span variants={letterVariants} className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)]">
-                    💓
+                    😸💓
                   </motion.span>
                   <motion.span variants={letterVariants} className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)]">
                     ✨
