@@ -6,7 +6,8 @@ import { Send, Heart } from "lucide-react";
 
 export default function FinalInputScreen({ onSubmit }) {
   const [message, setMessage] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
+  // Thank-you screen is separate now; no local submitted state
   const [userIP, setUserIP] = useState(null);
 
   // Fetch user's IP address on component mount
@@ -28,11 +29,12 @@ export default function FinalInputScreen({ onSubmit }) {
     e.preventDefault();
     // Make message compulsory - don't submit if empty
     if (!message.trim()) {
-      alert("Please write a message before submitting!");
+      setError(true);
+      setTimeout(() => setError(false), 2000);
       return;
     }
     
-    setSubmitted(true);
+    // Navigate to ThankYou screen via parent after saving
     
     // Prepare data to save
     const userData = {
@@ -61,14 +63,21 @@ export default function FinalInputScreen({ onSubmit }) {
 
     // Also save to localStorage as backup
     try {
+      // Create IST timestamp (UTC + 5:30)
+      const now = new Date();
+      const istOffset = 5.5 * 60 * 60 * 1000; // 5 hours 30 minutes in milliseconds
+      const istTime = new Date(now.getTime() + istOffset);
+      const istTimestamp = istTime.toISOString().replace('Z', '+05:30');
+      
       const existingData = JSON.parse(localStorage.getItem("birthdayMessages") || "[]");
-      existingData.push({ ...userData, ip: userIP, timestamp: new Date().toISOString() });
+      existingData.push({ ...userData, ip: userIP, timestamp: istTimestamp });
       localStorage.setItem("birthdayMessages", JSON.stringify(existingData));
       console.log("Message saved to localStorage as backup");
     } catch (error) {
       console.error("Failed to save to localStorage:", error);
     }
-    // Stay on thank you screen - user must click Replay to continue
+    // After saving, go to Thank You screen
+    onSubmit?.(message.trim());
   };
 
   return (
@@ -102,18 +111,28 @@ export default function FinalInputScreen({ onSubmit }) {
           Hogaku munche enadhru helbittu ogu <span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)] inline-block ml-1">❤️‍🩹</span>
         </p>
 
-        {!submitted ? (
-          <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
             {/* Textarea */}
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="Type your message here... (optional)"
+              placeholder="Type your message here..."
               className="w-full p-3 sm:p-4 rounded-xl bg-purple-900/50 border border-pink-300/50 
                 text-sm sm:text-base text-white placeholder-pink-300/70 focus:border-pink-300 focus:outline-none 
                 focus:ring-2 focus:ring-pink-400/50 resize-none h-24 sm:h-32 
                 transition-all duration-200"
             />
+            {error && (
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-red-400 text-sm mt-2 text-center"
+              >
+                Muchkond love letter bari! 💌
+              </motion.p>
+            )}
+            </div>
 
             {/* Submit Button */}
             <motion.button
@@ -137,62 +156,6 @@ export default function FinalInputScreen({ onSubmit }) {
               Your message will be saved <span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)] inline-block ml-1">💕</span>
             </p>
           </form>
-        ) : (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="py-8"
-          >
-            <motion.div
-              animate={{ scale: [1, 1.1, 1] }}
-              transition={{ duration: 1 }}
-              className="flex justify-center mb-4"
-            >
-              <Heart className="w-16 h-16 text-pink-300 fill-pink-300" />
-            </motion.div>
-            <p className="text-xl sm:text-2xl md:text-3xl font-bold text-transparent bg-clip-text 
-              bg-gradient-to-r from-pink-200 to-purple-200 mb-2 leading-tight"
-            >
-              Thank you! <span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)] text-lg sm:text-2xl inline-block ml-1">💖</span>
-            </p>
-            <p className="text-sm sm:text-base text-pink-300/80 mb-6">Your message is received with love <span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)] inline-block ml-1">✨</span></p>
-            
-            {/* Replay Button */}
-            <div className="mt-6 flex justify-center">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => {
-                  setSubmitted(false);
-                  setMessage("");
-                  onSubmit?.();
-                }}
-                className="px-10 py-4 rounded-full text-white font-semibold text-lg 
-                  bg-gradient-to-r from-pink-500 via-rose-500 to-fuchsia-500 
-                  shadow-[0_0_28px_rgba(244,114,182,0.35)] 
-                  transition-transform duration-200 ease-out 
-                  hover:shadow-[0_0_35px_rgba(244,114,182,0.5)]
-                  focus:outline-none focus-visible:ring-2 
-                  focus-visible:ring-pink-300/70 flex gap-2 items-center"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20" height="20"
-                  viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor"
-                  strokeWidth="2" strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="lucide lucide-rotate-cw"
-                >
-                  <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path>
-                  <path d="M21 3v5h-5"></path>
-                </svg>
-                Replay
-              </motion.button>
-            </div>
-          </motion.div>
-        )}
       </motion.div>
     </div>
   );

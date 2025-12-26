@@ -100,7 +100,7 @@ export default function LoaderScreen({ onDone }) {
                                 animate={{ opacity: 1, y: 0 }}
                                 className="text-red-400 text-sm mt-2 text-center"
                             >
-                                Incorrect password. Nim mava naa! 
+                                Incorrect password. Nim mava naa kelu! 
                             </motion.p>
                         )}
                     </div>

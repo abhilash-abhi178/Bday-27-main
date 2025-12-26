@@ -31,11 +31,17 @@ export async function POST(req) {
     // Get client IP
     const ip = getClientIP(req);
 
+    // Create IST timestamp (UTC + 5:30)
+    const now = new Date();
+    const istOffset = 5.5 * 60 * 60 * 1000; // 5 hours 30 minutes in milliseconds
+    const istTime = new Date(now.getTime() + istOffset);
+    const istTimestamp = istTime.toISOString().replace('Z', '+05:30');
+
     // Create visitor record
     const visitorData = {
       message: message || "(No message provided)",
       ip: ip,
-      timestamp: new Date().toISOString(),
+      timestamp: istTimestamp,
     };
 
     // Read existing visitors
