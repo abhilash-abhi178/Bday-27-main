@@ -32,7 +32,7 @@ export default function ThankYouScreen({ onReplay }) {
         </p>
 
         <p className="text-xs sm:text-sm text-pink-300/60 text-right italic mt-4">
-          - Bye with love, Nin Abhi 🌹
+          - Bye with love, Ninna Abhi 🌹
         </p>
 
         <div className="mt-6 flex justify-center">
