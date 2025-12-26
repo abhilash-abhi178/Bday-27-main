@@ -31,6 +31,10 @@ export default function ThankYouScreen({ onReplay }) {
           Your message is received with love <span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)] inline-block ml-1">✨</span>
         </p>
 
+        <p className="text-xs sm:text-sm text-pink-300/60 text-right italic mt-4">
+          - Bye with love, Nin Abhi
+        </p>
+
         <div className="mt-6 flex justify-center">
           <motion.button
             whileHover={{ scale: 1.05 }}
