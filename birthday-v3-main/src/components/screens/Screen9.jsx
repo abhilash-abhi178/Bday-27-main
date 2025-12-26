@@ -31,7 +31,7 @@ export default function Screen9({ onReplay }) {
           from-pink-200 via-purple-200 to-purple-200 
           drop-shadow-xl mt-5 leading-relaxed">
           <div className="mb-2">Once again, Happy Birthday Bangara!<span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)] inline-block ml-1">💝</span></div>
-          <div className="mb-2">Parvagilla or average agi aitha website<span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)] inline-block ml-1">😨</span></div>
+          <div className="mb-2">Parvagilla or average agi aitha website</div>
           <div>Hope irthiya forever inge jeevna poorthi <span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)] inline-block ml-1">😁</span></div>
         </div>
 
