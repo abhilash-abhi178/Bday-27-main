@@ -110,7 +110,7 @@ export default function MessageScreen({ onNext }) {
                   alt="cover"
                 />
                 <p className="absolute left-1/2 bottom-4 md:bottom-6 -translate-x-1/2 bg-pink-500 text-pink-50 w-36 md:w-44 rounded-lg py-1 text-center shadow-lg">
-                  Tap to Open 💗
+                  Tap to Open <span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)]">💗</span>
                 </p>
               </div>
 
@@ -125,12 +125,12 @@ export default function MessageScreen({ onNext }) {
               >
                 <p className="perfect-message">
                                  Happy Birthday, Cutiepie!<br />
-                                So today is the day the cutest troublemaker was born, huh?
-                                No wonder the world feels a little more beautiful ever since you arrived.
+                                So today is the day the cutest troublemaker was born, alvaa?
+                                No wonder the world feels a little more beautiful nin huttidhmele.
 
                                 <br /><br />
 
-                                it’s honestly unfair how cute you are.😉🥰
+                                it's honestly unfair how cute you are.<span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)]">😉🥰</span>
 
                                 <br /><br />
 
@@ -138,13 +138,13 @@ export default function MessageScreen({ onNext }) {
                                 that make you blush a little,
                                 smile a lot,
                                 and think of me at least once —
-                                okay fine, more than once. 😌
+                                okay fine, yavaglu nenp madkothiru . <span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)]">😁😌</span>
 
                                 <br /><br />
 
                                 Keep being your adorable, irresistible self.
                                 Wishing you happiness, surprises, and all the sweet things…
-                                including me, maybe. 💗😁
+                                including me, maybe. <span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)]">💗😁</span>
                 </p>
               </div>
             </motion.div>

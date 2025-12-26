@@ -98,12 +98,12 @@ export default function FinalInputScreen({ onSubmit }) {
         <h2 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text 
           bg-gradient-to-r from-pink-200 via-purple-200 to-pink-200 mb-2"
         >
-            Leave a Message! 💌
+            Leave a Message! <span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)]">💌</span>
         </h2>
 
         {/* Subtitle */}
         <p className="text-lg text-pink-300 font-medium mb-8">
-          Hogaku munche enadhru helbittu ogu ❤️‍🩹
+          Hogaku munche enadhru helbittu ogu <span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)]">❤️‍🩹</span>
         </p>
 
         {!submitted ? (
@@ -138,7 +138,7 @@ export default function FinalInputScreen({ onSubmit }) {
 
             {/* Optional Note */}
             <p className="text-sm text-pink-300/70 mt-4">
-              Your message and IP will be saved 💕
+              Your message and IP will be saved <span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)]">💕</span>
             </p>
           </form>
         ) : (
@@ -158,9 +158,42 @@ export default function FinalInputScreen({ onSubmit }) {
             <p className="text-2xl font-bold text-transparent bg-clip-text 
               bg-gradient-to-r from-pink-200 to-purple-200 mb-2"
             >
-              Thank you! 💖
+              Thank you! <span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)]">💖</span>
             </p>
-            <p className="text-pink-300/80">Your message is received with love ✨</p>
+            <p className="text-pink-300/80 mb-6">Your message is received with love <span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)]">✨</span></p>
+            
+            {/* Replay Button */}
+            <div className="mt-6 flex justify-center">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  setSubmitted(false);
+                  onSubmit?.();
+                }}
+                className="px-10 py-4 rounded-full text-white font-semibold text-lg 
+                  bg-gradient-to-r from-pink-500 via-rose-500 to-fuchsia-500 
+                  shadow-[0_0_28px_rgba(244,114,182,0.35)] 
+                  transition-transform duration-200 ease-out 
+                  hover:shadow-[0_0_35px_rgba(244,114,182,0.5)]
+                  focus:outline-none focus-visible:ring-2 
+                  focus-visible:ring-pink-300/70 flex gap-2 items-center"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20" height="20"
+                  viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor"
+                  strokeWidth="2" strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="lucide lucide-rotate-cw"
+                >
+                  <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path>
+                  <path d="M21 3v5h-5"></path>
+                </svg>
+                Replay
+              </motion.button>
+            </div>
           </motion.div>
         )}
       </motion.div>

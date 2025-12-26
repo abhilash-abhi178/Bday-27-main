@@ -53,7 +53,7 @@ export default function LoaderScreen({ onDone }) {
                         animate={{ scale: [1, 1.05, 1] }}
                         transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                     >
-                        I Love You Too Bangara! 💕
+                        I Love You Too Bangara! <span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)]">🌹💝✨</span>
                     </motion.h1>
                     <motion.div
                         key={count}
@@ -120,7 +120,7 @@ export default function LoaderScreen({ onDone }) {
                     animate={{ opacity: [0.5, 0.8, 0.5] }}
                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 >
-                    Hint: Express your feelings in 8 letters... 💝
+                    Hint: Express your feelings in 8 letters... <span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)]">💝</span>
                 </motion.p>
             </motion.div>
         </div>
