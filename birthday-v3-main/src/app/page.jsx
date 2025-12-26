@@ -10,6 +10,7 @@ import PhotosScreen from "@/components/screens/PhotosScreen"
 import MessageScreen from "@/components/screens/FlipCardMessageScreen"
 import GiftScreen from "@/components/screens/GiftScreen.jsx"
 import Screen9 from "@/components/screens/Screen9"
+import FinalInputScreen from "@/components/screens/FinalInputScreen"
 
 export default function HomePage() {
   const [currentScreen, setCurrentScreen] = useState(0)
@@ -22,7 +23,8 @@ export default function HomePage() {
     <PhotosScreen key="photos" onNext={() => setCurrentScreen(5)} />,
     <MessageScreen key="message" onNext={() => setCurrentScreen(6)} />,
     <GiftScreen key="gift" onNext={() => setCurrentScreen(7)}   />,
-    <Screen9 key="screen9" onReplay={() => setCurrentScreen(0)} />,
+    <Screen9 key="screen9" onReplay={() => setCurrentScreen(8)} />,
+    <FinalInputScreen key="final" onSubmit={() => setCurrentScreen(0)} />,
   ]
 
 

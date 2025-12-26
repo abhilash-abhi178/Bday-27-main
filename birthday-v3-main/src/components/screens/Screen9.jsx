@@ -31,7 +31,10 @@ export default function Screen9({ onReplay }) {
           from-pink-200 via-purple-200 to-purple-200 
           drop-shadow-xl mt-5"
         >
-          Once again, Happy Birthday! Hope you loved your surprise.
+          Once again, Happy Birthday Bangara!!<br></br> 
+          Parvagilla or average agi aitha website <br></br>
+          Hope irthiyaa inge yavaglu.
+
         </div>
 
         {/* Replay Button */}
