@@ -8,5 +8,10 @@
     "message": "I love you",
     "ip": "::1",
     "timestamp": "2025-12-26T12:29:25.883Z"
+  },
+  {
+    "message": "(No message provided)",
+    "ip": "::1",
+    "timestamp": "2025-12-26T12:51:59.348Z"
   }
 ]

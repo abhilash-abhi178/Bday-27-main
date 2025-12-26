@@ -49,17 +49,17 @@ export default function LoaderScreen({ onDone }) {
                     className="text-center"
                 >
                     <motion.h1
-                        className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-fuchsia-400 py-1.5 mb-8"
+                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-fuchsia-400 py-1.5 mb-6 leading-tight"
                         animate={{ scale: [1, 1.05, 1] }}
                         transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                     >
-                        I Love You Too Bangara! <span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)]">🌹💝✨</span>
+                        I Love You Too Bangara! <span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)] text-2xl sm:text-3xl md:text-4xl inline-block ml-1">🌹💝✨</span>
                     </motion.h1>
                     <motion.div
                         key={count}
                         initial={{ scale: 0.3, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
-                        className="text-8xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-pink-400 to-violet-400 drop-shadow-[0_0_30px_rgba(236,72,153,0.25)]"
+                        className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-pink-400 to-violet-400 drop-shadow-[0_0_30px_rgba(236,72,153,0.25)]"
                     >
                         {count}
                     </motion.div>
@@ -77,7 +77,7 @@ export default function LoaderScreen({ onDone }) {
                 className="w-full max-w-md"
             >
                 <motion.h1
-                    className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-fuchsia-400 mb-8 text-center py-1.5"
+                    className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-fuchsia-400 mb-6 sm:mb-8 text-center py-1.5 leading-tight"
                     animate={{ opacity: [0.8, 1, 0.8] }}
                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 >

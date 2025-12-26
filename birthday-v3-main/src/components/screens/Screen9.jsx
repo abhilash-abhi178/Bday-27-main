@@ -26,15 +26,13 @@ export default function Screen9({ onReplay }) {
         </p>
 
         {/* Message */}
-        <div className="text-pretty text-xl md:text-2xl font-semibold 
+        <div className="text-sm sm:text-base md:text-xl lg:text-2xl font-semibold 
           text-transparent bg-clip-text bg-gradient-to-r 
           from-pink-200 via-purple-200 to-purple-200 
-          drop-shadow-xl mt-5"
-        >
-          Once again, Happy Birthday Bangara!!<span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)]">💝</span><br></br> 
-          Parvagilla or average agi aitha website<span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)]">😨</span> <br></br>
-          Hope irthiya forever inge jeevna poorthi <span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)]">😁</span> .
-
+          drop-shadow-xl mt-5 leading-relaxed">
+          <div className="mb-2">Once again, Happy Birthday Bangara!<span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)] inline-block ml-1">💝</span></div>
+          <div className="mb-2">Parvagilla or average agi aitha website<span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)] inline-block ml-1">😨</span></div>
+          <div>Hope irthiya forever inge jeevna poorthi <span className="text-white drop-shadow-[0_0_8px_rgba(255,100,150,0.8)] inline-block ml-1">😁</span></div>
         </div>
 
         {/* Next Button */}
