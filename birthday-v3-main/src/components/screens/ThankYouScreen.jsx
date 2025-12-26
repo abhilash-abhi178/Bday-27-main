@@ -1,11 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
+import BackgroundHearts from "../BackgroundHearts";
 import { Heart } from "lucide-react";
 
 export default function ThankYouScreen({ onReplay }) {
   return (
-    <div className="w-full flex justify-center px-3 sm:px-4 py-6 sm:py-10">
+    <div className="w-full flex justify-center px-3 sm:px-4 py-6 sm:py-10 relative">
+      <BackgroundHearts />
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}

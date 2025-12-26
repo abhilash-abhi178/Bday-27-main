@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import GradientButton from "../GradientButton";
+import BackgroundHearts from "../BackgroundHearts";
 import { ArrowRight } from "lucide-react";
 import confetti from "canvas-confetti";
 
@@ -42,7 +43,9 @@ export default function MessageScreen({ onNext }) {
   };
 
   return (
-    <div className="px-4 md:px-6 py-10 text-center">
+    <div className="px-4 md:px-6 py-10 text-center relative">
+      <BackgroundHearts />
+      <div className="relative z-10">
       {/* Title */}
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
@@ -161,6 +164,7 @@ export default function MessageScreen({ onNext }) {
           </GradientButton>
         </motion.div>
       )}
+      </div>
     </div>
   );
 }

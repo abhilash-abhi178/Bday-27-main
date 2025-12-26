@@ -4,6 +4,7 @@ import { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import confetti from "canvas-confetti"
 import GradientButton from "../GradientButton"
+import BackgroundHearts from "../BackgroundHearts"
 import { Flame } from "lucide-react"
 
 const confettiColors = ["#FF3CAC", "#F687B3", "#D8B4FE", "#C084FC", "#F472B6"];
@@ -46,7 +47,8 @@ export default function CakeScreen({ onNext, onDecorate }) {
 
   return (
     <div className="px-4 md:px-6 py-10 text-center relative">
-      {/* Text removed as requested */}
+      <BackgroundHearts />
+      <div className="relative z-10">
 
       <div className="relative flex flex-col items-center gap-8 mt-52">
         <div className="relative mb-6">
@@ -70,7 +72,8 @@ export default function CakeScreen({ onNext, onDecorate }) {
           )}
         </AnimatePresence>
       </div>
-    </div >
+      </div>
+    </div>
   )
 }
 

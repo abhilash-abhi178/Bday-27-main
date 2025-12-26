@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import GradientButton from "../GradientButton";
+import BackgroundHearts from "../BackgroundHearts";
 import { ArrowRight } from "lucide-react";
 
 export default function ScreenFireflyHeart({ onNext }) {
@@ -191,7 +192,8 @@ export default function ScreenFireflyHeart({ onNext }) {
   };
 
   return (
-    <>
+    <div ref={containerRef} className="relative w-full h-screen overflow-hidden">
+      <BackgroundHearts />
       <div className="w-full flex justify-center mt-4">
         <div
           ref={containerRef}
@@ -267,6 +269,6 @@ export default function ScreenFireflyHeart({ onNext }) {
           </GradientButton>
         </motion.div>
       )}
-    </>
+    </div>
   );
 }

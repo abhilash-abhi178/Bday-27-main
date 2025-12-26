@@ -1,11 +1,14 @@
 "use client"
 
 import GradientButton from "../GradientButton"
+import BackgroundHearts from "../BackgroundHearts"
 import { Gift } from "lucide-react"
 
 export default function IntroScreen({ onNext }) {
     return (
-        <div className="py-10 md:py-14 text-center">
+        <div className="py-10 md:py-14 text-center relative">
+            <BackgroundHearts />
+            <div className="relative z-10">
             <div className="flex flex-col items-center gap-6">
                 <img
                     src="/gifs/intro.gif"
@@ -39,6 +42,7 @@ export default function IntroScreen({ onNext }) {
                         Start the surprise
                     </GradientButton>
                 </div>
+            </div>
             </div>
         </div>
     )
