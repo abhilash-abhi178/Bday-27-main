@@ -26,7 +26,14 @@ export default function IntroScreen({ onNext }) {
 
                 <div className="mt-8">
                     <GradientButton
-                        onClick={() => { onNext?.() }}
+                        onClick={() => {
+                            // Trigger audio playback through user interaction
+                            const audio = document.querySelector('audio');
+                            if (audio) {
+                                audio.play().catch(err => console.log('Audio play failed:', err));
+                            }
+                            onNext?.();
+                        }}
                     >
                         <Gift size={20} />
                         Start the surprise

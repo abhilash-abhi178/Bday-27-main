@@ -35,16 +35,17 @@ export default function AudioController() {
       if (ok && !cleaned) {
         document.removeEventListener("pointerdown", maybeClearInteraction)
         document.removeEventListener("keydown", maybeClearInteraction)
+        document.removeEventListener("touchstart", maybeClearInteraction)
       }
     }
 
-    // Wait 3 seconds then attempt autoplay
-    const playTimeout = setTimeout(() => {
-      playAudio()
-    }, 3000)
+    // Attempt autoplay immediately
+    playAudio()
 
+    // Also listen for any user interaction as fallback
     document.addEventListener("pointerdown", maybeClearInteraction)
     document.addEventListener("keydown", maybeClearInteraction)
+    document.addEventListener("touchstart", maybeClearInteraction)
 
     const handleVisibility = () => {
       const audio = audioRef.current
@@ -64,9 +65,9 @@ export default function AudioController() {
 
     return () => {
       cleaned = true
-      clearTimeout(playTimeout)
       document.removeEventListener("pointerdown", maybeClearInteraction)
       document.removeEventListener("keydown", maybeClearInteraction)
+      document.removeEventListener("touchstart", maybeClearInteraction)
       document.removeEventListener("visibilitychange", handleVisibility)
       if (audioRef.current) {
         audioRef.current.pause()
