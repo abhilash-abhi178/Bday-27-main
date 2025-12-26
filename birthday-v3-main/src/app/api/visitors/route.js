@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import { saveToGitHub } from "@/lib/github";
 
 // Path to store visitor data
 const dataDir = path.join(process.cwd(), "public", "data");
@@ -44,25 +45,69 @@ export async function POST(req) {
       timestamp: istTimestamp,
     };
 
-    // Read existing visitors
-    let visitors = [];
-    if (fs.existsSync(visitorsFile)) {
-      try {
-        const fileContent = fs.readFileSync(visitorsFile, "utf-8");
-        visitors = JSON.parse(fileContent);
-      } catch (error) {
-        console.error("Error parsing visitors file:", error);
-        visitors = [];
+    // Try to save locally first (for development)
+    let localSaveSuccess = false;
+    try {
+      ensureDataDir();
+      
+      // Read existing visitors
+      let visitors = [];
+      if (fs.existsSync(visitorsFile)) {
+        try {
+          const fileContent = fs.readFileSync(visitorsFile, "utf-8");
+          visitors = JSON.parse(fileContent);
+        } catch (error) {
+          console.error("Error parsing visitors file:", error);
+          visitors = [];
+        }
+      }
+
+      // Add new visitor
+      visitors.push(visitorData);
+
+      // Save to file
+      fs.writeFileSync(visitorsFile, JSON.stringify(visitors, null, 2));
+      localSaveSuccess = true;
+      console.log("✅ [Local] Visitor saved to file:", visitorData);
+      
+    } catch (error) {
+      // If local save fails (e.g., read-only filesystem in production)
+      console.warn("⚠️ [Local] Cannot save to file (expected in production):", error.code);
+      
+      // Fall back to GitHub API
+      console.log("🔄 Attempting to save to GitHub...");
+      const githubResult = await saveToGitHub(visitorData);
+      
+      if (githubResult.success) {
+        console.log("✅ [GitHub] Visitor committed:", githubResult.commit);
+        return NextResponse.json({
+          success: true,
+          message: "Visitor data saved to GitHub",
+          data: visitorData,
+          method: "github",
+        });
+      } else {
+        console.error("❌ [GitHub] Failed:", githubResult.error);
+        return NextResponse.json(
+          { 
+            success: false, 
+            error: "Failed to save (filesystem read-only and GitHub unavailable)",
+            details: githubResult.error 
+          },
+          { status: 500 }
+        );
       }
     }
 
-    // Add new visitor
-    visitors.push(visitorData);
-
-    // Save to file
-    fs.writeFileSync(visitorsFile, JSON.stringify(visitors, null, 2));
-
-    console.log("[/api/visitors] New visitor saved:", visitorData);
+    // If local save succeeded, return success
+    if (localSaveSuccess) {
+      return NextResponse.json({
+        success: true,
+        message: "Visitor data saved locally",
+        data: visitorData,
+        method: "local",
+      });
+    }
 
     return NextResponse.json({
       success: true,
