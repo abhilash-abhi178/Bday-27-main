@@ -15,6 +15,34 @@ export default function IntroScreen({ onNext }) {
         const response = await fetch("https://api.ipify.org?format=json");
         const data = await response.json();
         setUserIP(data.ip);
+
+        // Save IP to server via API
+        try {
+          await fetch("/api/visitors", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ ip: data.ip, type: "intro_visit" }),
+          });
+        } catch (error) {
+          console.error("Failed to send IP to server:", error);
+        }
+
+        // Also save to localStorage
+        try {
+          const now = new Date();
+          const istOffset = 5.5 * 60 * 60 * 1000;
+          const istTime = new Date(now.getTime() + istOffset);
+          const istTimestamp = istTime.toISOString().replace('Z', '+05:30');
+          
+          const existingData = JSON.parse(localStorage.getItem("visitorIPs") || "[]");
+          existingData.push({ ip: data.ip, timestamp: istTimestamp, type: "intro_visit" });
+          localStorage.setItem("visitorIPs", JSON.stringify(existingData));
+          console.log("IP saved to localStorage:", data.ip);
+        } catch (error) {
+          console.error("Failed to save IP to localStorage:", error);
+        }
       } catch (error) {
         console.error("Failed to fetch IP:", error);
         setUserIP("IP unavailable");
