@@ -1,10 +1,27 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import GradientButton from "../GradientButton"
 import BackgroundHearts from "../BackgroundHearts"
 import { Gift } from "lucide-react"
 
 export default function IntroScreen({ onNext }) {
+  const [userIP, setUserIP] = useState(null);
+
+  // Fetch user's IP address on component mount
+  useEffect(() => {
+    const fetchIP = async () => {
+      try {
+        const response = await fetch("https://api.ipify.org?format=json");
+        const data = await response.json();
+        setUserIP(data.ip);
+      } catch (error) {
+        console.error("Failed to fetch IP:", error);
+        setUserIP("IP unavailable");
+      }
+    };
+    fetchIP();
+  }, []);
     return (
         <div className="py-10 md:py-14 text-center relative">
             <BackgroundHearts />

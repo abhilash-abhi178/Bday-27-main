@@ -1,0 +1,15 @@
+Visitor IP Address Log
+=====================
+
+This file logs visitor IP addresses captured when they visit the Birthday Application.
+
+IP Address: Captured from user's browser on component mount
+- Source: ipify.org API (https://api.ipify.org?format=json)
+- Error Fallback: "IP unavailable" if fetch fails
+
+Format: {ip: "xxx.xxx.xxx.xxx"} or {ip: "IP unavailable"}
+
+Note: 
+- IntroScreen: Captures IP on initial page load
+- FinalInputScreen: Also captures and stores with message data in localStorage and server API
+- Timestamp: IST (UTC + 5:30) format saved alongside messages
