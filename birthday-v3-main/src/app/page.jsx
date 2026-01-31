@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { AnimatePresence, motion } from "framer-motion"
+import WelcomeScreen from "@/components/screens/WelcomeScreen"
 import LoaderScreen from "@/components/screens/LoaderScreen"
 import IntroScreen from "@/components/screens/IntroScreen"
 import CakeScreen from "@/components/screens/CakeScreen"
@@ -17,15 +18,16 @@ export default function HomePage() {
   const [currentScreen, setCurrentScreen] = useState(0)
 
   const screens = [
-    <LoaderScreen key="loader" onDone={() => setCurrentScreen(1)} />,
-    <IntroScreen key="intro" onNext={() => setCurrentScreen(2)} />,
-    <CakeScreen key="cake" onNext={() => setCurrentScreen(3)} />,
-    <BalloonScreen key="balloon" onNext={() => setCurrentScreen(4)} />,
-    <PhotosScreen key="photos" onNext={() => setCurrentScreen(5)} />,
-    <MessageScreen key="message" onNext={() => setCurrentScreen(6)} />,
-    <GiftScreen key="gift" onNext={() => setCurrentScreen(7)}   />,
-    <Screen9 key="screen9" onReplay={() => setCurrentScreen(8)} />,
-    <FinalInputScreen key="final" onSubmit={() => setCurrentScreen(9)} />,
+    <WelcomeScreen key="welcome" onNext={() => setCurrentScreen(1)} />,
+    <LoaderScreen key="loader" onDone={() => setCurrentScreen(2)} />,
+    <IntroScreen key="intro" onNext={() => setCurrentScreen(3)} />,
+    <CakeScreen key="cake" onNext={() => setCurrentScreen(4)} />,
+    <BalloonScreen key="balloon" onNext={() => setCurrentScreen(5)} />,
+    <PhotosScreen key="photos" onNext={() => setCurrentScreen(6)} />,
+    <MessageScreen key="message" onNext={() => setCurrentScreen(7)} />,
+    <GiftScreen key="gift" onNext={() => setCurrentScreen(8)}   />,
+    <Screen9 key="screen9" onReplay={() => setCurrentScreen(9)} />,
+    <FinalInputScreen key="final" onSubmit={() => setCurrentScreen(10)} />,
     <ThankYouScreen key="thankyou" onReplay={() => setCurrentScreen(0)} />,
   ]
 

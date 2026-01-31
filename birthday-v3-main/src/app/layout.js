@@ -20,7 +20,8 @@ export default function RootLayout({ children }) {
         
         {/* 🌸 Global floating hearts background */}
         <BackgroundHearts />
-        <AudioController />
+        {/* Audio disabled - site is now static */}
+        {/* <AudioController /> */}
 
         {children}
       </body>
